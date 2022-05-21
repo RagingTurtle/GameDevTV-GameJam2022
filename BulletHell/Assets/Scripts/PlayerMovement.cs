@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
     
     private void Start() {
         agent = GetComponent<NavMeshAgent>();
