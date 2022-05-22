@@ -18,5 +18,9 @@ public class HitCount : MonoBehaviour
     void Update()
     {
         TextField.text = hits.ToString();
+        if (hits > 3)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

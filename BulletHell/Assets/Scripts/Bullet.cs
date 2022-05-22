@@ -40,10 +40,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
         if (other.transform.name == "Ghost")
         {
-            other.gameObject.GetComponent<HitCount>().hits += 1;
+            other.GetComponent<HitCount>().hits += 1;
+        }
+        if (other.transform.tag == "Gravestone"){
+            other.GetComponent<HitCount>().hits +=1;
+            Destroy();
         }
     }
 }
