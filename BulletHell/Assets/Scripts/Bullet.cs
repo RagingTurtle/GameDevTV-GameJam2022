@@ -8,11 +8,11 @@ public class Bullet : MonoBehaviour
     private float moveSpeed;
     private void OnEnable()
     {
-        Invoke("Destroy", 2f);
+        Invoke("Destroy", 4f);
     }
     private void Start()
     {
-        moveSpeed = 5f;
+        moveSpeed = 4f;
     }
 
     private void Update()
@@ -24,6 +24,10 @@ public class Bullet : MonoBehaviour
         moveDirection = dir;
     }
 
+    public void SetBulletSpeed(float bulletSpeed){
+        moveSpeed = bulletSpeed;
+    }
+
     private void Destroy()
     {
         gameObject.SetActive(false);
@@ -32,5 +36,14 @@ public class Bullet : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("hit");
+        if (other.transform.name == "Ghost")
+        {
+            other.gameObject.GetComponent<HitCount>().hits += 1;
+        }
     }
 }

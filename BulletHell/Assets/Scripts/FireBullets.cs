@@ -6,7 +6,9 @@ public class FireBullets : MonoBehaviour
 {
     [SerializeField] private int bulletsAmount = 10;
     [SerializeField] private float startAngle = 0f, endAngle = 360f;
-    [SerializeField] private float fireRate =2f;
+    [SerializeField] private float fireRate = 2f;
+    [SerializeField] private Transform mouth;
+    [SerializeField] private float bulletSpeed;
     private void Start()
     {
         InvokeRepeating("Fire", 0f, fireRate);
@@ -18,18 +20,17 @@ public class FireBullets : MonoBehaviour
         float angle = startAngle;
         for (int i = 0; i < bulletsAmount + 1; i++)
         {
-            float bulletDirectionX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-            float bulletDirectionY = transform.position.y;
-            float bulletDirectionZ = transform.position.z + Mathf.Cos((angle * Mathf.PI) / 180f);
+            float bulletDirectionX = mouth.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulletDirectionY = mouth.position.y;
+            float bulletDirectionZ = mouth.position.z + Mathf.Cos((angle * Mathf.PI) / 180f);
             Vector3 bulletMoveVector = new Vector3(bulletDirectionX, bulletDirectionY, bulletDirectionZ);
-            Vector3 bulletDirection = (bulletMoveVector - transform.position).normalized;
+            Vector3 bulletDirection = (bulletMoveVector - mouth.position).normalized;
 
             GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();
-                    Debug.Log(BulletPool.bulletPoolInstance.GetBullet().name);
-
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = transform.rotation;
+            bullet.transform.position = mouth.position;
+            bullet.transform.rotation = mouth.rotation;
             bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().SetBulletSpeed(bulletSpeed);
             bullet.GetComponent<Bullet>().SetMoveDirection(bulletDirection);
             angle += angleStep;
         }

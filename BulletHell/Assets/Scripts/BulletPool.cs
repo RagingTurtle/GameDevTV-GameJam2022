@@ -22,8 +22,6 @@ public class BulletPool : MonoBehaviour
     }
     public GameObject GetBullet()
     {
-        Debug.Log("Hi");
-
         if (bullets.Count > 0)
         {
             for (int i = 0; i < bullets.Count; i++)
