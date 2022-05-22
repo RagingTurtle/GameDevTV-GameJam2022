@@ -24,10 +24,10 @@ public class Bullet : MonoBehaviour
         moveDirection = dir;
     }
 
-    public void SetBulletSpeed(float bulletSpeed){
+    public void SetBulletSpeed(float bulletSpeed)
+    {
         moveSpeed = bulletSpeed;
     }
-
     private void Destroy()
     {
         gameObject.SetActive(false);
