@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
         {
             walkPoint = new Vector3(transform.position.x + WalkPointRange, transform.position.y, transform.position.z);
             WalkPointRange *= -1;
-            
+
             if (Physics.Raycast(walkPoint, -transform.up, 2f, Floor))
             {
                 walkPointSet = true;

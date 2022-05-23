@@ -9,6 +9,7 @@ public class FireBullets : MonoBehaviour
     [SerializeField] private float fireRate = 2f;
     [SerializeField] private Transform mouth;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private ObjectPool bulletPoolInstance;
     private void Start()
     {
         InvokeRepeating("Fire", 0f, fireRate);
@@ -26,7 +27,7 @@ public class FireBullets : MonoBehaviour
             Vector3 bulletMoveVector = new Vector3(bulletDirectionX, bulletDirectionY, bulletDirectionZ);
             Vector3 bulletDirection = (bulletMoveVector - mouth.position).normalized;
 
-            GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();
+            GameObject bullet = bulletPoolInstance.GetObject();
             bullet.transform.position = mouth.position;
             bullet.transform.rotation = mouth.rotation;
             bullet.SetActive(true);

@@ -7,18 +7,11 @@ using System;
 public class HitCount : MonoBehaviour
 {
     [SerializeField] public TMP_Text TextField;
-    public int hits=0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public int hitPoints = 3;
     void Update()
     {
-        TextField.text = hits.ToString();
-        if (hits > 3)
+        TextField.text = hitPoints.ToString();
+        if (hitPoints < 1)
         {
             gameObject.SetActive(false);
         }
