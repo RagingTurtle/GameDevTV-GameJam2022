@@ -1605,9 +1605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a105b8a1ab6fbd94dbf79a62c51aabb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementVector: {x: 0, y: 0, z: 0}
+  movementFactor: 0
+  period: 2
   walkPointSet: 0
   walkPoint: {x: 0, y: 0, z: 0}
-  WalkPointRange: 5
   Floor:
     serializedVersion: 2
     m_Bits: 64
@@ -1766,9 +1768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a105b8a1ab6fbd94dbf79a62c51aabb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementVector: {x: 15, y: 0, z: 0}
+  movementFactor: 0
+  period: 2
   walkPointSet: 0
   walkPoint: {x: 0, y: 0, z: 0}
-  WalkPointRange: 15
   Floor:
     serializedVersion: 2
     m_Bits: 64
