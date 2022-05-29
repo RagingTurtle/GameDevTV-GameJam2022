@@ -6,20 +6,32 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Vector3 startingPosition;
+    [SerializeField] Vector3 movementVector;
+    [SerializeField][Range(0, 1)] float movementFactor;
+    [SerializeField] float period = 2f;
+
     public bool walkPointSet;
     public Vector3 walkPoint;
-    public float WalkPointRange;
     public LayerMask Floor;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        startingPosition = transform.position;
     }
     private void Update()
     {
         if (!walkPointSet)
         {
-            walkPoint = new Vector3(transform.position.x + WalkPointRange, transform.position.y, transform.position.z);
-            WalkPointRange *= -1;
+            if (period <= Mathf.Epsilon) { return; }
+            float cycles = Time.time / period;
+            const float tau = Mathf.PI * 2;
+            float rawSinWave = Mathf.Sin(cycles * tau);
+
+            movementFactor = (rawSinWave + 1f) / 2f;
+
+            Vector3 offset = movementVector * movementFactor;
+            walkPoint = startingPosition + offset;
 
             if (Physics.Raycast(walkPoint, -transform.up, 2f, Floor))
             {
