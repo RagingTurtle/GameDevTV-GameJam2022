@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     public void SetMoveDirection(Vector3 dir)
     {
         moveDirection = dir;
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 
     public void SetBulletSpeed(float bulletSpeed)

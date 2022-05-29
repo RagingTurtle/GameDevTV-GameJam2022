@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     }
 
         public void ResetSave(){
-        PlayerPrefs.DeleteKey("timer");
+        PlayerPrefs.DeleteKey("secondsToLive");
         PlayerPrefs.DeleteKey("treesCollected");
     }
 }

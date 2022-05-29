@@ -9,10 +9,12 @@ public class GhostDeath : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private GameObject DeathCanvas;
     [SerializeField] private TextMeshProUGUI DeathMessage;
+    [SerializeField] private string sceneName;
+
     private void OnDisable()
     {
         timer.StopTimer();
-        PlayerPrefs.SetFloat("timer", timer.currentTime);
+        PlayerPrefs.SetFloat("secondsToLive", timer.currentTime);
         DeathCanvas.SetActive(true);
         string msg = "You have died.\nYou have ";
         msg += timer.currentTime.ToString();
@@ -20,9 +22,9 @@ public class GhostDeath : MonoBehaviour
         DeathMessage.text = msg;
     }
     
-        public void LoadScroller()
+        public void LoadSceneButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(sceneName);
     }
 
 }
