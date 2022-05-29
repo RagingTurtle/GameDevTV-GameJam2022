@@ -11,6 +11,7 @@ public class TreeSpawner : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnTrees", 0f, growRate);
+        treeAmount = PlayerPrefs.GetInt("treesCollected", 0);
     }
     private void SpawnTrees()
     {
